@@ -11,6 +11,7 @@ makeCacheMatrix <- function(x = matrix()) {
     x <<- y
     inv <<- NULL
   }
+  ## Creating the list that caches the inverse. I would have never figured out this part.
   get <- function() x
   setsolve <- function(solve) inv <<- solve
   getsolve <- function() inv
@@ -23,13 +24,15 @@ makeCacheMatrix <- function(x = matrix()) {
 ## If not calculated before, then calculate now the inverse of the matrix. Print it.
 
 cacheSolve <- function(x, ...) {
-  ## Return a matrix that is the inverse of 'x'
+  ## Return a matrix that is the inverse of 'x'. I have followed the example almost to the letter.
   inv <- x$getsolve()
+  ## I have to admit that I have not been able to print the previously calculated result. this loop below.
   if(!is.null(inv)) {
     message("getting cached data")
     return(inv)
   }
   else { 
+    ## This part works well, the inverse of the matrix is printed.
     data <- x$get()
     inv <- solve(data, ...)
     x$setsolve(inv) 
